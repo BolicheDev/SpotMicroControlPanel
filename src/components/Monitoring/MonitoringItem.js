@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const StatusItem = ({ label, value }) => (
+const MonitoringItem = ({ label, value }) => (
   <motion.div
     className="flex justify-between items-center bg-[#0f172a] p-4 rounded-lg shadow-md border border-[#42a5f5] transition-transform transform hover:scale-105 hover:shadow-lg"
     initial={{ opacity: 0, y: 10 }}
@@ -13,4 +13,4 @@ const StatusItem = ({ label, value }) => (
   </motion.div>
 );
 
-export default StatusItem;
+export default MonitoringItem;
