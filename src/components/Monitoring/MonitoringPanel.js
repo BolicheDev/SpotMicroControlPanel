@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from 'react';
+import { WebSocketContext } from '../../WebSocketContext';
 import { motion } from "framer-motion";
 import MonitoringItem from "./MonitoringItem";
 
 const MonitoringPanel = () => {
+  const { wsConnected } = useContext(WebSocketContext);
+
   return (
     <motion.div
       className="w-full h-full bg-[#1e293b] rounded-xl shadow-lg border border-[#42a5f5] p-6 flex flex-col gap-6 text-[#42a5f5] animate-fade-in"
@@ -16,6 +19,7 @@ const MonitoringPanel = () => {
         <MonitoringItem label="Sensor Status" value="Active" />
         <MonitoringItem label="Position" value="X: 10, Y: 20, Z: 5" />
         <MonitoringItem label="System Health" value="Optimal" />
+        <MonitoringItem label="WebSocket Status" value={wsConnected ? "Connected" : "Disconnected"} />
       </div>
     </motion.div>
   );

@@ -1,34 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from 'react';
+import { WebSocketContext } from '../../WebSocketContext';
 import { motion } from "framer-motion";
 import FunctionButton from "./FunctionButton";
 
 const FunctionsPanel = () => {
-  const connectWebSocket = () => {
-    const ws = new WebSocket("ws://localhost:5000");
-  
-    ws.onopen = () => console.log("Connected to WebSocket");
-    ws.onerror = (error) => {
-      console.error("WebSocket Error:", error);
-      setTimeout(connectWebSocket, 3000); // Reintentar conexión en 3 segundos
-    };
-  
-    return ws;
-  };
-  
-  const [socket, setSocket] = useState(null);
-  
-  useEffect(() => {
-    setSocket(connectWebSocket());
-  }, []);
-
-  const sendCommand = (command) => {
-    if (socket && socket.readyState === WebSocket.OPEN) {
-      socket.send(JSON.stringify({ command }));
-      console.log("Sent command:", command);
-    } else {
-      console.error("WebSocket not connected");
-    }
-  };
+  const { sendCommand } = useContext(WebSocketContext);
 
   return (
     <motion.div
@@ -48,7 +24,7 @@ const FunctionsPanel = () => {
           <FunctionButton label="Idle" action={() => sendCommand("idle")} position="center" disableHover />
         </div>
       </div>
-      
+
       {/* Sección derecha: Lista de botones en dos columnas */}
       <div className="flex-1 flex flex-col justify-center items-center gap-4">
         <h2 className="text-2xl font-bold text-center uppercase tracking-wide border-b border-[#42a5f5] pb-2">Controls</h2>
