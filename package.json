@@ -34,7 +34,7 @@
     "react-scripts": "^5.0.1",
     "styled-components": "^6.1.15",
     "web-vitals": "^4.2.4",
-    "webpack": "^5.98.0"
+    "webpack": "^5.105.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
